@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% extends 'tasks/base.html' %}
+{%load crispy_forms_tags%}
+
+{% block base%}
+  <div class="center-column">
+
+
+
+<form   method="POST" action='/' >
+{%csrf_token%}
+  {{form.title }}
+
+  <input type="submit" name=""  class='submit' value="Submit">
+
+</form>
+
+
+
+
+    {% for task in tasks%}
+<div class="item-row ">
+  <a href="/update/{{task.id}}/" class='btn btn-primary anchor' >Edit</a>
+  <a href="/delete/{{task.id}}/" class='btn btn-warning anchor' >Delete</a>
+
+      {% if task.complete == True %}
+      <strike style='color:white'>{{task}}</strike>
+      {%else%}
+      <span class='span'>{{task}}</span>
+
+      {%endif%}
+
+      </div>
+
+      {%endfor%}
+
+
+    </div>
+
+{% endblock%}
